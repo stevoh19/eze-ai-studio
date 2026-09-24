@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZE AI STUDIO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b1020;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #111936, #18265c);
+      border-bottom: 1px solid #29345d;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #66a6ff;
+    }
+
+    header p {
+      color: #b9c3df;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .hero h2 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #aeb8d5;
+      line-height: 1.5;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .tool {
+      background: #141c38;
+      border: 1px solid #29345d;
+      border-radius: 16px;
+      padding: 20px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .tool:hover,
+    .tool.active {
+      border-color: #66a6ff;
+      background: #1a2750;
+    }
+
+    .tool .icon {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .tool h3 {
+      font-size: 15px;
+    }
+
+    .studio {
+      background: #11182e;
+      border: 1px solid #29345d;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .studio h2 {
+      margin-bottom: 15px;
+      font-size: 21px;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 7px;
+      color: #cbd4ef;
+      font-size: 14px;
+    }
+
+    textarea,
+    input,
+    select {
+      width: 100%;
+      background: #080d1c;
+      color: white;
+      border: 1px solid #303b65;
+      border-radius: 12px;
+      padding: 13px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    textarea:focus,
+    input:focus,
+    select:focus {
+      border-color: #66a6ff;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 18px;
+      background: linear-gradient(135deg, #287cff, #7048ff);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(.98);
+    }
+
+    .upload {
+      border: 2px dashed #3a4775;
+      border-radius: 14px;
+      padding: 25px;
+      text-align: center;
+      color: #aeb8d5;
+      margin-top: 10px;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      background: #080d1c;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #29345d;
+    }
+
+    .loader {
+      margin: 15px auto;
+      width: 35px;
+      height: 35px;
+      border: 4px solid #303b65;
+      border-top-color: #66a6ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .result-icon {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #7783a7;
+      font-size: 13px;
+    }
+
+    @media (min-width: 600px) {
+      .tools {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>✨ EZE AI STUDIO</h1>
+  <p>Create images, videos and stories with AI</p>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <h2>Your AI Creative Studio</h2>
+    <p>
+      Turn your ideas into images, videos and cinematic stories.
+    </p>
+  </section>
+
+  <div class="tools">
+
+    <div class="tool active" onclick="selectTool('image', this)">
+      <div class="icon">🖼️</div>
+      <h3>Text to Image</h3>
+    </div>
+
+    <div class="tool" onclick="selectTool('video', this)">
+      <div class="icon">🎬</div>
+      <h3>Image to Video</h3>
+    </div>
+
+    <div class="tool" onclick="selectTool('story', this)">
+      <div class="icon">📖</div>
+      <h3>Story Video</h3>
+    </div>
+
+    <div class="tool" onclick="selectTool('script', this)">
+      <div class="icon">✍️</div>
+      <h3>AI Script</h3>
+    </div>
+
+  </div>
+
+  <section class="studio">
+
+    <h2 id="studioTitle">🖼️ Text to Image</h2>
+
+    <label for="prompt">Describe what you want</label>
+
+    <textarea id="prompt"
+      placeholder="Example: A beautiful Nigerian village at sunset, cinematic, realistic, traditional houses..."></textarea>
+
+    <div id="uploadBox" style="display:none;">
+      <label>Upload an image</label>
+
+      <div class="upload">
+        📷<br><br>
+        <input type="file" accept="image/*">
+      </div>
+    </div>
+
+    <label>Style</label>
+
+    <select id="style">
+      <option>Realistic Cinematic</option>
+      <option>Nollywood Movie</option>
+      <option>3D Animation</option>
+      <option>Anime</option>
+      <option>Fantasy</option>
+      <option>Documentary</option>
+    </select>
+
+    <label>Aspect Ratio</label>
+
+    <select id="ratio">
+      <option>16:9 Landscape</option>
+      <option>9:16 Portrait</option>
+      <option>1:1 Square</option>
+    </select>
+
+    <button onclick="generate()">
+      ✨ Generate
+    </button>
+
+    <div class="result" id="result">
+      <div class="loader" id="loader"></div>
+      <div id="resultText">Creating your project...</div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  © 2026 EZE AI STUDIO<br>
+  Create • Imagine • Inspire
+</footer>
+
+
+<script>
+
+let currentTool = "image";
+
+function selectTool(tool, element) {
+
+  currentTool = tool;
+
+  document.querySelectorAll(".tool").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  element.classList.add("active");
+
+  const title = document.getElementById("studioTitle");
+  const prompt = document.getElementById("prompt");
+  const upload = document.getElementById("uploadBox");
+
+  upload.style.display = "none";
+
+  if (tool === "image") {
+    title.innerHTML = "🖼️ Text to Image";
+    prompt.placeholder =
+      "Example: A beautiful Nigerian village at sunset, cinematic and realistic...";
+  }
+
+  if (tool === "video") {
+    title.innerHTML = "🎬 Image to Video";
+    upload.style.display = "block";
+    prompt.placeholder =
+      "Describe how you want the image to move. Example: Camera slowly moves forward while the character walks...";
+  }
+
+  if (tool === "story") {
+    title.innerHTML = "📖 Story Video";
+    prompt.placeholder =
+      "Write your story here. Example: A young Igbo farmer discovers a mysterious treasure in the forest...";
+  }
+
+  if (tool === "script") {
+    title.innerHTML = "✍️ AI Script Writer";
+    prompt.placeholder =
+      "Describe the movie or story you want the AI to write...";
+  }
+}
+
+
+function generate() {
+
+  const prompt = document.getElementById("prompt").value.trim();
+  const result = document.getElementById("result");
+  const resultText = document.getElementById("resultText");
+  const loader = document.getElementById("loader");
+
+  if (!prompt) {
+    alert("Please describe what you want to create first.");
+    return;
+  }
+
+  result.style.display = "block";
+  loader.style.display = "block";
+  resultText.innerHTML = "Creating your project...";
+
+  setTimeout(function() {
+
+    loader.style.display = "none";
+
+    if (currentTool === "image") {
+      resultText.innerHTML =
+        "🖼️ Your image request is ready to send to an AI image generator.";
+    }
+
+    else if (currentTool === "video") {
+      resultText.innerHTML =
+        "🎬 Your image-to-video request is ready.";
+    }
+
+    else if (currentTool === "story") {
+      resultText.innerHTML =
+        "📖 Your story video project is ready to generate.";
+    }
+
+    else {
+      resultText.innerHTML =
+        "✍️ Your AI script request is ready.";
+    }
+
+  }, 1800);
+}
+
+</script>
+
+</body>
+</html>
