@@ -6,7 +6,550 @@
   <title>EZE AI STUDIO</title>
 
   <style>
-    * {
+    * {<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b14">
+<title>EZE AI STUDIO</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#080b14;
+  color:white;
+  min-height:100vh;
+}
+
+.header{
+  padding:22px 18px 15px;
+  background:linear-gradient(135deg,#10182d,#080b14);
+  border-bottom:1px solid #20283b;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.logo span{
+  color:#7c5cff;
+}
+
+.subtitle{
+  color:#8e98ad;
+  font-size:13px;
+  margin-top:5px;
+}
+
+.container{
+  padding:18px;
+  max-width:700px;
+  margin:auto;
+}
+
+.hero{
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#191536,#111827);
+  border:1px solid #30275a;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  color:#aeb6c8;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:#111622;
+  border:1px solid #252d3e;
+  border-radius:18px;
+  padding:18px 14px;
+  min-height:145px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:active{
+  transform:scale(.97);
+}
+
+.icon{
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.card h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.card p{
+  color:#8f99ad;
+  font-size:12px;
+  line-height:1.4;
+}
+
+.section{
+  margin-top:25px;
+}
+
+.section-title{
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+.panel{
+  background:#111622;
+  border:1px solid #252d3e;
+  border-radius:18px;
+  padding:17px;
+}
+
+textarea,input,select{
+  width:100%;
+  background:#080c15;
+  color:white;
+  border:1px solid #30394d;
+  border-radius:12px;
+  padding:14px;
+  outline:none;
+  margin-bottom:12px;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+input:focus,textarea:focus,select:focus{
+  border-color:#7c5cff;
+}
+
+.btn{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:13px;
+  background:linear-gradient(135deg,#7c5cff,#5c3ee8);
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.btn.secondary{
+  background:#20283a;
+}
+
+.upload{
+  border:2px dashed #39445c;
+  border-radius:14px;
+  padding:25px 15px;
+  text-align:center;
+  margin-bottom:12px;
+  color:#9da7bb;
+}
+
+.preview{
+  width:100%;
+  border-radius:14px;
+  margin-top:10px;
+  display:none;
+}
+
+.result{
+  margin-top:15px;
+  padding:15px;
+  background:#080c15;
+  border-radius:13px;
+  border:1px solid #252d3e;
+  color:#b9c1d1;
+  line-height:1.6;
+  display:none;
+}
+
+.bottom{
+  text-align:center;
+  color:#606a7d;
+  font-size:12px;
+  padding:35px 10px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#1c2440;
+  color:#9f8cff;
+  font-size:11px;
+  margin-top:10px;
+}
+
+@media(max-width:420px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">EZE <span>AI STUDIO</span></div>
+  <div class="subtitle">Create images, videos and stories with AI</div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>What do you want to create?</h1>
+    <p>
+      Turn your ideas into stories, images and videos from your Android phone.
+    </p>
+    <div class="badge">MOBILE AI CREATIVE STUDIO</div>
+  </section>
+
+  <section class="grid">
+
+    <div class="card" onclick="showTool('image')">
+      <div class="icon">🖼️</div>
+      <h3>Text → Image</h3>
+      <p>Create an image from a written description.</p>
+    </div>
+
+    <div class="card" onclick="showTool('video')">
+      <div class="icon">🎬</div>
+      <h3>Image → Video</h3>
+      <p>Upload an image and prepare it for video creation.</p>
+    </div>
+
+    <div class="card" onclick="showTool('story')">
+      <div class="icon">📖</div>
+      <h3>Story → Video</h3>
+      <p>Turn your story idea into a video script.</p>
+    </div>
+
+    <div class="card" onclick="showTool('writer')">
+      <div class="icon">✍️</div>
+      <h3>AI Story Writer</h3>
+      <p>Create movie stories and scenes.</p>
+    </div>
+
+  </section>
+
+  <!-- TEXT TO IMAGE -->
+
+  <section class="section" id="imageTool">
+    <div class="section-title">🖼️ Text → Image</div>
+
+    <div class="panel">
+      <textarea id="imagePrompt"
+      placeholder="Describe the image you want...
+
+Example:
+A beautiful Igbo village in Nigeria at sunset, a man and his wife working on their farm, cinematic Nollywood style, realistic photography"></textarea>
+
+      <select id="imageStyle">
+        <option>Cinematic Realistic</option>
+        <option>Nollywood Movie</option>
+        <option>Photorealistic</option>
+        <option>3D Animation</option>
+        <option>Anime</option>
+        <option>Fantasy</option>
+      </select>
+
+      <button class="btn" onclick="generateImage()">
+        ✨ Generate Image
+      </button>
+
+      <div class="result" id="imageResult"></div>
+    </div>
+  </section>
+
+
+  <!-- IMAGE TO VIDEO -->
+
+  <section class="section" id="videoTool">
+    <div class="section-title">🎬 Image → Video</div>
+
+    <div class="panel">
+
+      <label class="upload">
+        📁 Tap here to select an image
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          onchange="previewImage(event)"
+          style="display:none">
+      </label>
+
+      <img id="preview" class="preview">
+
+      <textarea id="videoPrompt"
+      placeholder="Describe the movement...
+
+Example:
+The couple walks slowly through the farm while the camera moves forward. Gentle wind blows through the trees. Cinematic lighting."></textarea>
+
+      <select id="videoDuration">
+        <option>5 seconds</option>
+        <option>10 seconds</option>
+        <option>15 seconds</option>
+        <option>30 seconds</option>
+      </select>
+
+      <button class="btn" onclick="generateVideo()">
+        🎥 Create Video
+      </button>
+
+      <div class="result" id="videoResult"></div>
+
+    </div>
+  </section>
+
+
+  <!-- STORY TO VIDEO -->
+
+  <section class="section" id="storyTool">
+    <div class="section-title">📖 Story → Video</div>
+
+    <div class="panel">
+
+      <textarea id="storyInput"
+      placeholder="Enter your story idea...
+
+Example:
+Two brothers from different villages fight over their father's land. One secretly joins their enemies..."></textarea>
+
+      <select id="storyGenre">
+        <option>Nollywood Drama</option>
+        <option>Igbo Folktale</option>
+        <option>Comedy</option>
+        <option>Romance</option>
+        <option>Action</option>
+        <option>Fantasy</option>
+      </select>
+
+      <button class="btn" onclick="createStory()">
+        📜 Create Movie Story
+      </button>
+
+      <div class="result" id="storyResult"></div>
+
+    </div>
+  </section>
+
+
+  <!-- STORY WRITER -->
+
+  <section class="section" id="writerTool">
+    <div class="section-title">✍️ AI Story Writer</div>
+
+    <div class="panel">
+
+      <textarea id="writerInput"
+      placeholder="Tell EZE AI what kind of story you want..."></textarea>
+
+      <button class="btn" onclick="writeStory()">
+        ✨ Write Story
+      </button>
+
+      <div class="result" id="writerResult"></div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="bottom">
+  <b>EZE AI STUDIO</b><br>
+  Your personal AI creative studio
+</div>
+
+
+<script>
+
+function showTool(tool){
+
+  const ids = {
+    image:"imageTool",
+    video:"videoTool",
+    story:"storyTool",
+    writer:"writerTool"
+  };
+
+  document.getElementById(ids[tool])
+    .scrollIntoView({behavior:"smooth"});
+}
+
+
+function generateImage(){
+
+  const prompt =
+    document.getElementById("imagePrompt").value.trim();
+
+  const style =
+    document.getElementById("imageStyle").value;
+
+  const result =
+    document.getElementById("imageResult");
+
+  if(!prompt){
+    alert("Please describe the image you want.");
+    return;
+  }
+
+  result.style.display="block";
+
+  result.innerHTML =
+    "<b>Image request prepared.</b><br><br>" +
+    "Prompt: " + escapeHTML(prompt) +
+    "<br>Style: " + escapeHTML(style) +
+    "<br><br>" +
+    "Your AI image-generation API will be connected here.";
+}
+
+
+function previewImage(event){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+  const preview =
+    document.getElementById("preview");
+
+  preview.src =
+    URL.createObjectURL(file);
+
+  preview.style.display="block";
+}
+
+
+function generateVideo(){
+
+  const prompt =
+    document.getElementById("videoPrompt").value.trim();
+
+  const duration =
+    document.getElementById("videoDuration").value;
+
+  const result =
+    document.getElementById("videoResult");
+
+  if(!document.getElementById("imageUpload").files.length){
+    alert("Please select an image first.");
+    return;
+  }
+
+  result.style.display="block";
+
+  result.innerHTML =
+    "<b>Video request prepared.</b><br><br>" +
+    "Duration: " + escapeHTML(duration) +
+    "<br>" +
+    "Motion: " +
+    escapeHTML(prompt || "Natural cinematic movement") +
+    "<br><br>" +
+    "Your AI video-generation API will be connected here.";
+}
+
+
+function createStory(){
+
+  const story =
+    document.getElementById("storyInput").value.trim();
+
+  const genre =
+    document.getElementById("storyGenre").value;
+
+  const result =
+    document.getElementById("storyResult");
+
+  if(!story){
+    alert("Please enter your story idea.");
+    return;
+  }
+
+  result.style.display="block";
+
+  result.innerHTML =
+    "<b>🎬 MOVIE STORY</b><br><br>" +
+    "<b>Genre:</b> " + escapeHTML(genre) +
+    "<br><br>" +
+    "<b>Story idea:</b><br>" +
+    escapeHTML(story) +
+    "<br><br>" +
+    "<b>Next:</b> Connect the AI story API to automatically generate scenes, dialogue and narration.";
+}
+
+
+function writeStory(){
+
+  const idea =
+    document.getElementById("writerInput").value.trim();
+
+  const result =
+    document.getElementById("writerResult");
+
+  if(!idea){
+    alert("Please enter a story idea.");
+    return;
+  }
+
+  result.style.display="block";
+
+  result.innerHTML =
+    "<b>✍️ STORY DRAFT</b><br><br>" +
+    "Your story idea:<br>" +
+    escapeHTML(idea) +
+    "<br><br>" +
+    "The AI writing engine will be connected here next.";
+}
+
+
+function escapeHTML(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+</script>
+
+</body>
+</html>
       box-sizing: border-box;
       margin: 0;
       padding: 0;
