@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZE AI STUDIO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b0f19;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #111827, #18213a);
+      border-bottom: 1px solid #263149;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #00e676;
+    }
+
+    header p {
+      margin-top: 6px;
+      color: #aab4c8;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .hero h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #aab4c8;
+      line-height: 1.5;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #151c2c;
+      border: 1px solid #29344d;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #00e676;
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin-bottom: 7px;
+    }
+
+    .card p {
+      color: #9ca8bd;
+      font-size: 13px;
+    }
+
+    .section {
+      margin-top: 25px;
+      background: #151c2c;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #29344d;
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      background: #0b0f19;
+      color: white;
+      border: 1px solid #34415e;
+      border-radius: 12px;
+      padding: 15px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #00e676;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #00c853;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00e676;
+    }
+
+    .upload {
+      border: 2px dashed #34415e;
+      border-radius: 12px;
+      padding: 30px 15px;
+      text-align: center;
+      color: #9ca8bd;
+    }
+
+    input[type="file"] {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: #718096;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+      .tools {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎬 EZE AI STUDIO</h1>
+  <p>Create Images • Videos • Stories with AI</p>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <h2>Welcome to EZE AI STUDIO</h2>
+    <p>
+      Your personal AI creative studio for generating images,
+      videos and cinematic stories.
+    </p>
+  </div>
+
+  <div class="tools">
+
+    <div class="card" onclick="showTool('image')">
+      <div class="icon">🎨</div>
+      <h3>Text to Image</h3>
+      <p>Create images from your ideas.</p>
+    </div>
+
+    <div class="card" onclick="showTool('video')">
+      <div class="icon">🎬</div>
+      <h3>Image to Video</h3>
+      <p>Turn images into videos.</p>
+    </div>
+
+    <div class="card" onclick="showTool('story')">
+      <div class="icon">📖</div>
+      <h3>AI Story</h3>
+      <p>Create stories and movie scripts.</p>
+    </div>
+
+    <div class="card" onclick="showTool('upload')">
+      <div class="icon">📷</div>
+      <h3>Upload Image</h3>
+      <p>Use your own images.</p>
+    </div>
+
+  </div>
+
+  <div class="section" id="workspace">
+
+    <h2>✨ AI Creative Workspace</h2>
+
+    <textarea
+      id="prompt"
+      placeholder="Describe what you want to create...&#10;&#10;Example: A beautiful Igbo village at sunset, cinematic Nollywood style, realistic characters..."
+    ></textarea>
+
+    <button onclick="generate()">
+      🚀 Generate
+    </button>
+
+    <div id="result" style="margin-top:20px;"></div>
+
+  </div>
+
+  <div class="section">
+
+    <h2>📷 Upload Your Image</h2>
+
+    <div class="upload">
+      <p>Select an image from your phone</p>
+
+      <input
+        type="file"
+        accept="image/*"
+        onchange="previewImage(event)"
+      >
+
+      <div id="preview" style="margin-top:15px;"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 EZE AI STUDIO<br>
+  Built for creativity ❤️
+</footer>
+
+<script>
+
+function showTool(tool) {
+
+  const prompt = document.getElementById("prompt");
+
+  if (tool === "image") {
+    prompt.placeholder =
+      "Describe the image you want to create...";
+  }
+
+  if (tool === "video") {
+    prompt.placeholder =
+      "Describe the video you want to create from an image...";
+  }
+
+  if (tool === "story") {
+    prompt.placeholder =
+      "Describe the story or movie you want to create...";
+  }
+
+  if (tool === "upload") {
+    document.querySelector(".upload").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  document.getElementById("workspace").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function generate() {
+
+  const prompt = document.getElementById("prompt").value;
+  const result = document.getElementById("result");
+
+  if (!prompt.trim()) {
+    result.innerHTML =
+      "<p style='color:#ff5252;'>Please enter a description first.</p>";
+    return;
+  }
+
+  result.innerHTML = `
+    <div style="
+      background:#0b0f19;
+      padding:15px;
+      border-radius:12px;
+      border:1px solid #34415e;
+    ">
+      <strong>✨ Your request:</strong>
+      <p style="margin-top:10px;color:#aab4c8;">
+        ${prompt}
+      </p>
+      <p style="margin-top:15px;color:#00e676;">
+        AI generation engine will be connected here.
+      </p>
+    </div>
+  `;
+}
+
+function previewImage(event) {
+
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    document.getElementById("preview").innerHTML = `
+      <img
+        src="${e.target.result}"
+        style="
+          max-width:100%;
+          max-height:300px;
+          border-radius:12px;
+        "
+      >
+    `;
+
+  };
+
+  reader.readAsDataURL(file);
+}
+
+</script>
+
+</body>
+</html>
